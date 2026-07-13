@@ -1,16 +1,18 @@
-//lab1
-#include<stdio.h>
-int main(){
+// lab1
+#include <stdio.h>
+int main()
+{
     int num;
 
     printf("enter the number : \n");
-    scanf("%d",&num);
-    if(num%2==0){
+    scanf("%d", &num);
+    if (num % 2 == 0)
+    {
         printf("the number was even : \n");
-    }else{
+    }
+    else
+    {
         printf("the number was odd  : \n");
-
     }
     return 0;
-
-    }
+}
