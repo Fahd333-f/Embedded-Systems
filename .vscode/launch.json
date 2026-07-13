@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/D87/Embedded-Systems/C-conditons",
-      "program": "d:/D87/Embedded-Systems/C-conditons/build/Debug/outDebug",
+      "cwd": "d:/D87/sesion4",
+      "program": "d:/D87/sesion4/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
