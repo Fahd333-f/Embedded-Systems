@@ -31,7 +31,7 @@ int main()
         }
         else
         {
-            printf(" the qautiont of two number = %d\n", num1 / num2);
+            printf(" the quotient of two number = %d\n", num1 / num2);
         }
         break;
     default:
