@@ -1,3 +1,4 @@
+// Write a C program to input an integer and check whether it is even or odd using the ternary operator.
 #include <stdio.h>
 #include <stdlib.h>
 int main()
