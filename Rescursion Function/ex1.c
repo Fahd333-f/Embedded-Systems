@@ -11,6 +11,7 @@ int main()
         exit(1);
     }
     printf("%d", multiplication_Function(number_x, number_y));
+    return 0;
 }
 int multiplication_Function(int number, int number_2)
 {
