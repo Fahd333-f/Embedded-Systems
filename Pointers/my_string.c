@@ -11,9 +11,7 @@ void print_string(char *str)
     }
     printf("\n");
 }
-void string_copy(char *str)
-{
-}
+
 void string_length(const char *str)
 {
     int i = 0;
@@ -79,4 +77,29 @@ void toggle_string(const char *str)
         ptr++;
     }
     printf("\n");
+}
+char *string_copy(const char *source, char *dest)
+{
+    int i = 0;
+    char *start = dest;
+    while ((*source != '\0'))
+    {
+        *dest = *source;
+        source++;
+        dest++;
+        i++;
+    }
+    *dest = '\0';
+
+    printf("the number of characters is %d : \n", i);
+    return start;
+}
+int string_compare(char *str1, char *str2)
+{
+    while ((*str1 != '\0') && (*str1 == *str2))
+    {
+        str1++;
+        str2++;
+    }
+    return *str1 - *str2;
 }
