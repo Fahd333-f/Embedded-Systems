@@ -10,13 +10,20 @@ int main()
     to_upper(arr2);
     to_lower(arr2);
     toggle_string(arr2);
-    // printf("%s\n", string_copy(arr2, dest));
-    if (string_compare(arr2, dest) == 0)
-    {
-        printf("are the same strings");
-    }
-    else
-    {
-        printf("are not  the same strings");
-    }
+    printf("%s\n", string_copy(arr2, dest));
+       // if (string_compare(arr2, dest) == 0)
+        {
+            printf("are the same strings");
+        }
+        else
+        {
+            printf("are not  the same strings");
+        }
+    struct employee emp1;
+    struct employee emp2;
+
+    take_struct(&emp1);
+    take_struct(&emp2);
+    print_struct(&emp1);
+    print_struct(&emp2);
 }

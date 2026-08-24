@@ -103,3 +103,23 @@ int string_compare(char *str1, char *str2)
     }
     return *str1 - *str2;
 }
+
+void take_struct(struct employee *emp)
+{
+    struct employee *s1 = emp;
+    printf("Enter the id of  employee : \n");
+    scanf("%d", &s1->id);
+    printf("Enter the salary of  employee : \n");
+    scanf("%f", &s1->salary);
+
+    printf("Enter the name  of  employee : \n");
+
+    scanf(" %s", s1->name);
+}
+void print_struct(struct employee *emp)
+{
+    printf("the id of the employee is  :\t%d \n", emp->id);
+    printf("the salary of the employee is :\t%.2f  \n", emp->salary);
+
+    printf("the name of the employee is  :\t%s \n", emp->name);
+}
