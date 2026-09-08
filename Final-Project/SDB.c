@@ -6,7 +6,11 @@ static STUDENT arr[10] = {0};
 uint32 counter_Student = 0;
 uint32 index_i = 0;
 
-uint32 SDB_GetUsedSize(void)
+uint32 SDB_GetUsedSize(void) /*
+                              * Function: SDB_GetUsedSize
+                              * How it works: It loops through the static student array. Since the array is initially zeroed out, it checks the ID. If the ID is not 0, it increments a counter.
+                              * Why this way: This accurately calculates the actual number of stored students based on valid data, and returns the final count.
+                              */
 {
     uint32 counter = 0;
     for (uint32 i = 0; i < 10; i++)
@@ -17,7 +21,11 @@ uint32 SDB_GetUsedSize(void)
     return counter;
 }
 
-bool SDB_IsFull(void)
+bool SDB_IsFull(void) /*
+                       * Function: SDB_IsFull
+                       * How it works: It calls SDB_GetUsedSize() to check if the database has reached the maximum limit (10 students).
+                       * Why this way: The return type is boolean because we only need a simple True/False answer to determine if there is space available.
+                       */
 {
     if (SDB_GetUsedSize() == 10)
     {
@@ -80,6 +88,25 @@ bool SDB_AddEntry(void)
 }
 
 void SDB_DeletEntry(uint32 id)
+/*
+ * Function: SDB_DeletEntry
+ *
+ * How it works:
+ * It searches for the target ID. Once found, it uses a nested loop
+ * starting from that index to shift all subsequent elements one step
+ * to the left (arr[j] = arr[j + 1]). It stops shifting at the last
+ * index to avoid out-of-bounds errors. Finally, it zeroes out the
+ * last element, decrements the global index, and updates a boolean
+ * flag to print a success message.
+ *
+ * Why this way:
+ * Simply setting a deleted element to 0 creates gaps in the array,
+ * which breaks the insertion logic and causes out-of-bounds errors
+ * when adding new students. The shifting algorithm keeps the data
+ * contiguous. The boolean flag ensures the user gets accurate
+ * feedback if the ID doesn't exist.
+ */
+
 {
     uint32 id_x = id;
     bool is_deleted = false;
@@ -113,6 +140,21 @@ void SDB_DeletEntry(uint32 id)
 }
 
 bool SDB_ReadEntry(uint32 id)
+/*
+ * Function: SDB_ReadEntry
+ *
+ * How it works:
+ * It takes a student ID as an argument and uses a for loop
+ * to iterate through the database. Once it finds a matching ID,
+ * it immediately prints all the stored information (academic year,
+ * courses IDs, and grades) for that specific student.
+ *
+ * Why this way:
+ * A linear search is the most straightforward and efficient
+ * method for finding an element in a small static array.
+ * Printing the data directly upon finding the match keeps
+ * the function simple and provides immediate output.
+ */
 {
     uint32 id_x = id;
     for (uint32 i = 0; i < 10; i++)
@@ -134,6 +176,21 @@ bool SDB_ReadEntry(uint32 id)
 }
 
 bool SDB_IsIdExist(uint32 id)
+/*
+ * Function: SDB_IsIdExist
+ *
+ * How it works:
+ * It loops through the array to search for the given ID.
+ * If a match is found, it immediately returns true. If the
+ * loop finishes without finding the ID, it returns false.
+ *
+ * Why this way:
+ * It uses a boolean return type because its only job is to
+ * verify existence, not to print results. Returning true
+ * or false allows the frontend (the switch case in SDBAPP)
+ * to decide what message to display, which keeps the backend
+ * logic perfectly isolated from the user interface.
+ */
 {
     for (uint32 i = 0; i < 10; i++)
     {
@@ -146,6 +203,22 @@ bool SDB_IsIdExist(uint32 id)
 }
 
 void SDB_GetList(uint8 *count, uint32 *list)
+/*
+ * Function: SDB_GetList
+ *
+ * How it works:
+ * It collects all the currently stored student IDs from the
+ * database and populates them into a single array (list).
+ * It also uses SDB_GetUsedSize() to determine exactly how
+ * many IDs need to be extracted.
+ *
+ * Why this way:
+ * Passing an array by reference allows the backend to gather
+ * the data without interfering with the UI. It gives the
+ * frontend a clean, consolidated list of IDs so they can be
+ * easily printed stacked on top of each other, exactly as
+ * required by the project specifications.
+ */
 {
     *count = SDB_GetUsedSize();
     for (uint8 i = 0; i < *count; i++)

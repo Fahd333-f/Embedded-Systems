@@ -3,6 +3,20 @@
 #include <stdio.h>
 
 void SDB_action(uint8 choice)
+/*
+ * Function: SDB_action
+ *
+ * How it works:
+ * This function acts as the main dispatcher. It takes the user's
+ * choice and uses a switch-case statement to call the required
+ * backend function. It also handles necessary user inputs, like
+ * asking for a specific ID before calling Read or Delete functions.
+ *
+ * Why this way:
+ * Using a switch-case keeps the logic highly organized. It separates
+ * the menu display from the execution of commands, which perfectly
+ * follows the modular programming concept.
+ */
 {
     uint32 ID_2;
     uint32 LIST[10];
@@ -67,6 +81,24 @@ void SDB_action(uint8 choice)
     }
 }
 void SDB_APP(void)
+/*
+ * Function: SDB_APP
+ *
+ * How it works:
+ * It uses a while(1) infinite loop to keep the program running
+ * and continuously displays the main menu. It scans the user's
+ * choice and passes it to SDB_action().
+ *
+ * The Exit Trick (Choice 8):
+ * If the user chooses 8, an 'if' condition catches it early
+ * and breaks the loop immediately before calling SDB_action().
+ *
+ * Why this way:
+ * Catching the exit command before the function call is highly
+ * efficient. It saves the processor from making an unnecessary
+ * call just to do nothing. The program simply breaks the loop
+ * and returns to main() to exit gracefully.
+ */
 {
 
     uint8 choice = 0;
@@ -94,6 +126,6 @@ void SDB_APP(void)
             break;
         }
 
-        SDB_action((uint8)choice);
+        SDB_action(choice);
     }
 }
