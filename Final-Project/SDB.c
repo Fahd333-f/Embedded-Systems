@@ -6,7 +6,7 @@ static STUDENT arr[10] = {0};
 uint32 counter_Student = 0;
 uint32 index_i = 0;
 
-uint32 SDB_GetUsedSize(void) /*
+uint32 SDB_GetUsedSize() /*
                               * Function: SDB_GetUsedSize
                               * How it works: It loops through the static student array. Since the array is initially zeroed out, it checks the ID. If the ID is not 0, it increments a counter.
                               * Why this way: This accurately calculates the actual number of stored students based on valid data, and returns the final count.
@@ -21,7 +21,7 @@ uint32 SDB_GetUsedSize(void) /*
     return counter;
 }
 
-bool SDB_IsFull(void) /*
+bool SDB_IsFull() /*
                        * Function: SDB_IsFull
                        * How it works: It calls SDB_GetUsedSize() to check if the database has reached the maximum limit (10 students).
                        * Why this way: The return type is boolean because we only need a simple True/False answer to determine if there is space available.
@@ -37,7 +37,7 @@ bool SDB_IsFull(void) /*
     }
 }
 
-bool SDB_AddEntry(void)
+bool SDB_AddEntry()
 {
     if (SDB_GetUsedSize() == 10)
     {
