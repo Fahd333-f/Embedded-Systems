@@ -32,12 +32,47 @@ NODE *insertatbeagn(int data, NODE *ptr)
     N->next = ptr;
     return N;
 }
-NODE *insertatend(int data, NODE *ptr)
+
+void insertatend(int data, NODE *ptr)
 {
-    NODE *N = createnode(200);
-    ptr->next = N;
-    N->next = NULL;
-    N->data = data;
+    NODE *HEAD = ptr;
+    NODE *N = cratenode(data);
+    if (ptr == NULL)
+    {
+        printf("Error: List is empty.\n");
+        return;
+    }
+    while (1)
+    {
+        if (HEAD->next == NULL)
+        {
+            N->next = NULL;
+            HEAD->next = N;
+            break;
+        }
+        HEAD = HEAD->next;
+    }
+}
+
+NODE *Insert_at(int data, NODE *head, int index)
+{
+    if (index == 1)
+        return insertatbeagn(data, head);
+
+    NODE *ptr = head;
+    for (int i = 1; i < index - 1 && ptr != NULL; i++)
+    {
+        ptr = ptr->next;
+    }
+
+    if (ptr == NULL)
+        return head;
+
+    NODE *new = cratenode(data);
+    new->next = ptr->next;
+    ptr->next = new;
+
+    return head;
 }
 
 int main()
@@ -59,6 +94,22 @@ int main()
 
     printf("SUCCEFULL CREATING\n");
 
+    printf("After Insertion:\n");
+    printnode(head);
+    printf("\n--------------------------------------------\n");
+
+    printf("Before Insertion:\n");
+    printnode(head);
+    insertatend(20000232, head);
+    printf("SUCCEFULL CREATING\n");
+    printf("After Insertion:\n");
+    printnode(head);
+    printf("\n--------------------------------------------\n");
+
+    printf("Before Insertion:\n");
+    printnode(head);
+    head = Insert_at(99, head, 3);
+    printf("SUCCEFULL CREATING\n");
     printf("After Insertion:\n");
     printnode(head);
 
